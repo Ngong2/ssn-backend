@@ -11,6 +11,7 @@ const stripeRoutes = require('./Routes/stripepg');
 
 const app = express();
 
+
 // ---------- MIDDLEWARE ----------
 // Enable CORS and JSON parsing
 app.use(cors());
@@ -28,7 +29,6 @@ app.use('/api', ssnRoutes); // e.g., /api/contact, /api/subscribe
 app.use('/api/mpesa', mpesaRoutes);         // Endpoints: /api/mpesa/payment, /api/mpesa/callback
 app.use('/api/flutterwave', flutterwaveRoutes); // Endpoint: /api/flutterwave/pay
 app.use('/api/stripe', stripeRoutes);         // Endpoints: /api/stripe/donate, /api/stripe/webhook
-
 // ---------- 404 Handler ----------
 app.use((req, res, next) => {
   res.status(404).json({ message: '🔍 Route not found' });
