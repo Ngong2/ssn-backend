@@ -36,10 +36,10 @@ app.use((req, res, next) => {
 
 // ---------- Error Handler ----------
 app.use((err, req, res, next) => {
-  console.error('❌ Internal Server Error:', err);
-  res.status(500).json({ message: '🚨 Something went wrong', error: err.message });
+  console.error(' Internal Server Error:', err);
+  res.status(500).json({ message: ' Something went wrong', error: err.message });
 });
 
 // ---------- START SERVER ----------
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`✅ Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
