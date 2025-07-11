@@ -11,13 +11,13 @@ router.post('/pay', async (req, res) => {
   try {
     const tx_ref = `TX-${Date.now()}`;
 
-    const redirectUrl = 'http://localhost:3000/donation-success'; // Or your homepage: 'http://localhost:3000/'
+    const redirectUrl = 'http://localhost:3000/donation-success'; 
 
     const payload = {
       tx_ref,
       amount,
-      currency: 'KES', // default to KES
-      payment_options: 'card,mpesa',
+      currency: 'KES', 
+      payment_options: 'card,mpesa', 
       redirect_url: redirectUrl,
       customer: {
         email,
