@@ -11,7 +11,7 @@ router.post('/pay', async (req, res) => {
   try {
     const tx_ref = `TX-${Date.now()}`;
 
-    const redirectUrl = 'http://localhost:3000/donation-success'; 
+    const redirectUrl = 'http://localhost:3001/donation-success'; 
 
     const payload = {
       tx_ref,
