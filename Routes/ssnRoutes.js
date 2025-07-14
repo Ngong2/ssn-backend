@@ -1,3 +1,4 @@
+// Routes/ssnRoutes.js
 const express = require('express');
 const nodemailer = require('nodemailer');
 const router = express.Router();
@@ -37,6 +38,8 @@ router.post('/contact', async (req, res) => {
   }
 });
 
+
+
 // Admin Reply
 router.post('/reply', async (req, res) => {
   const { to, subject, replyMessage } = req.body;
@@ -61,6 +64,8 @@ router.post('/reply', async (req, res) => {
   }
 });
 
+
+
 // Newsletter Subscription
 router.post('/newsletter', async (req, res) => {
   const { email } = req.body;
@@ -78,6 +83,8 @@ router.post('/newsletter', async (req, res) => {
     res.status(500).send({ error: 'Subscription failed' });
   }
 });
+
+
 
 // Volunteer Application
 router.post('/volunteer', async (req, res) => {
