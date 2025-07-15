@@ -17,16 +17,10 @@ router.post('/contact', async (req, res) => {
   const { name, email, message } = req.body;
 
   try {
-    await transporter.sendMail({
-      from: email,
-      to: process.env.ADMIN_EMAIL,
-      subject: `Contact from ${name}`,
-      text: message,
-    });
 
     await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to: email,
+      to: process.env.ADMIN_EMAIL,
       subject: 'SSN - We Received Your Message',
       text: `Hi ${name}, thank you for contacting us. We’ll reply soon.`,
     });
@@ -40,32 +34,6 @@ router.post('/contact', async (req, res) => {
 
 
 
-// Admin Reply
-router.post('/reply', async (req, res) => {
-  const { to, subject, replyMessage } = req.body;
-
-  if (!to || !subject || !replyMessage) {
-    return res.status(400).send({ error: 'All fields are required.' });
-  }
-
-  try {
-    const info = await transporter.sendMail({
-      from: process.env.SMTP_USER,
-      to,
-      subject,
-      text: replyMessage,
-    });
-
-    console.log('Reply Email sent:', info.messageId);
-    res.send({ message: 'Reply sent successfully!' });
-  } catch (error) {
-    console.error('Reply Error:', error.message);
-    res.status(500).send({ error: `Failed to reply: ${error.message}` });
-  }
-});
-
-
-
 // Newsletter Subscription
 router.post('/newsletter', async (req, res) => {
   const { email } = req.body;
@@ -73,7 +41,7 @@ router.post('/newsletter', async (req, res) => {
   try {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to: email,
+      to: process.env.ADMIN_EMAIL,
       subject: 'Subscribed to SSN Newsletter',
       text: `Thanks for subscribing!`,
     });
@@ -91,16 +59,11 @@ router.post('/volunteer', async (req, res) => {
   const { name, email, reason } = req.body;
 
   try {
-    await transporter.sendMail({
-      from: email,
-      to: process.env.ADMIN_EMAIL,
-      subject: `Volunteer Application from ${name}`,
-      text: reason,
-    });
+    
 
     await transporter.sendMail({
       from: process.env.SMTP_USER,
-      to: email,
+      to: process.env.ADMIN_EMAIL,
       subject: 'SSN Volunteer Application Received',
       text: `Hi ${name}, thanks for applying to volunteer. We will review your application soon.`,
     });
