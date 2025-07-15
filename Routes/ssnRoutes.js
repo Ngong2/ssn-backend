@@ -56,7 +56,7 @@ router.post('/newsletter', async (req, res) => {
 
 // Volunteer Application
 router.post('/volunteer', async (req, res) => {
-  const { name, email, reason } = req.body;
+  const { name, email, phone, reason, residence, areaOfInterest, availability } = req.body;
 
   try {
     
@@ -64,8 +64,9 @@ router.post('/volunteer', async (req, res) => {
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to: process.env.ADMIN_EMAIL,
-      subject: 'SSN Volunteer Application Received',
-      text: `Hi ${name}, thanks for applying to volunteer. We will review your application soon.`,
+      subject: 'SSN Volunteer Application',
+      text: `Dear Hiring Manager, \n I am apply for voluntary service. Below are my details.\n
+      Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nReason for Volunteering: ${reason}\nResidence: ${residence}\nArea of Interest: ${areaOfInterest}\nAvailability: ${availability}`,
     });
 
     res.send({ message: 'Application sent!' });
