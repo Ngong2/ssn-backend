@@ -66,7 +66,7 @@ router.post('/volunteer', async (req, res) => {
       to: process.env.ADMIN_EMAIL,
       subject: 'SSN Volunteer Application',
       text: `Dear Hiring Manager, \n I am apply for voluntary service. Below are my details.\n
-      Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nReason for Volunteering: ${reason}\nResidence: ${residence}\nArea of Interest: ${areaOfInterests}\nAvailability: ${availability}`,
+      Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nReason for Volunteering: ${reason}\nResidence: ${residence}\nArea of Interests: ${areaOfInterests}\nAvailability: ${availability}`,
     });
 
     res.send({ message: 'Application sent!' });
