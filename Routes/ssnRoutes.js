@@ -14,15 +14,15 @@ const transporter = nodemailer.createTransport({
 
 // Contact Form
 router.post('/contact', async (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, subject } = req.body;
 
   try {
 
     await transporter.sendMail({
       from: process.env.SMTP_USER,
       to: process.env.ADMIN_EMAIL,
-      subject: 'SSN - We Received Your Message',
-      text: `Hi ${name}, thank you for contacting us. We’ll reply soon.`,
+      subject: subject,
+      text: message + `\n\nFrom: ${name} <${email}>`,
     });
 
     res.send({ message: 'Message sent successfully!' });
