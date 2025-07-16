@@ -59,7 +59,7 @@ router.post('/volunteer', async (req, res) => {
   const { name, email, phone, reason, residence, areaOfInterests, availability } = req.body;
 
   try {
-    
+    console.log('Received volunteer application:', req.body);
 
     await transporter.sendMail({
       from: process.env.SMTP_USER,
